@@ -1,0 +1,14 @@
+[submodule "AIEFramework/dep/glm"]
+	path = AIEFramework/dep/glm
+	url = https://github.com/g-truc/glm
+[submodule "AIEFramework/dep/glfw"]
+	path = AIEFramework/dep/glfw
+	url = https://github.com/glfw/glfw
+	ignore = dirty
+[submodule "AIEFramework/dep/glew"]
+	path = AIEFramework/dep/glew
+	url = https://github.com/nigels-com/glew
+	ignore = dirty
+[submodule "AIEFramework/dep/stb"]
+	path = AIEFramework/dep/stb
+	url = https://github.com/nothings/stb.git

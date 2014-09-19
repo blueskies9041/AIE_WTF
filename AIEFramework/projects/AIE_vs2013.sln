@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AIEFramework", "AIEFramework\AIEFramework_vs2013.vcxproj", "{BBD02D30-A9A5-41ED-9C12-67EC17B5C08B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D056CED-A513-41EE-A0DD-6ECFE546F6B0} = {5D056CED-A513-41EE-A0DD-6ECFE546F6B0}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FBXLoader", "..\tools\FBXLoader\FBXLoader_vs2013.vcxproj", "{5D056CED-A513-41EE-A0DD-6ECFE546F6B0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial1", "Tutorial1\Tutorial1.vcxproj", "{940ADE97-763E-4EF1-BC0A-80C273834B2E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BBD02D30-A9A5-41ED-9C12-67EC17B5C08B} = {BBD02D30-A9A5-41ED-9C12-67EC17B5C08B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tutorial2", "Tutorial2\Tutorial2.vcxproj", "{AF623AB9-09A5-4EB8-A9D7-771613D10EF2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BBD02D30-A9A5-41ED-9C12-67EC17B5C08B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BBD02D30-A9A5-41ED-9C12-67EC17B5C08B}.Debug|Win32.Build.0 = Debug|Win32
+		{BBD02D30-A9A5-41ED-9C12-67EC17B5C08B}.Release|Win32.ActiveCfg = Release|Win32
+		{BBD02D30-A9A5-41ED-9C12-67EC17B5C08B}.Release|Win32.Build.0 = Release|Win32
+		{5D056CED-A513-41EE-A0DD-6ECFE546F6B0}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5D056CED-A513-41EE-A0DD-6ECFE546F6B0}.Debug|Win32.Build.0 = Debug|Win32
+		{5D056CED-A513-41EE-A0DD-6ECFE546F6B0}.Release|Win32.ActiveCfg = Release|Win32
+		{5D056CED-A513-41EE-A0DD-6ECFE546F6B0}.Release|Win32.Build.0 = Release|Win32
+		{940ADE97-763E-4EF1-BC0A-80C273834B2E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{940ADE97-763E-4EF1-BC0A-80C273834B2E}.Debug|Win32.Build.0 = Debug|Win32
+		{940ADE97-763E-4EF1-BC0A-80C273834B2E}.Release|Win32.ActiveCfg = Release|Win32
+		{940ADE97-763E-4EF1-BC0A-80C273834B2E}.Release|Win32.Build.0 = Release|Win32
+		{AF623AB9-09A5-4EB8-A9D7-771613D10EF2}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AF623AB9-09A5-4EB8-A9D7-771613D10EF2}.Debug|Win32.Build.0 = Debug|Win32
+		{AF623AB9-09A5-4EB8-A9D7-771613D10EF2}.Release|Win32.ActiveCfg = Release|Win32
+		{AF623AB9-09A5-4EB8-A9D7-771613D10EF2}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
