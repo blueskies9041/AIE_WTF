@@ -22,9 +22,9 @@ bool Tutorial2::onCreate(int a_argc, char* a_argv[])
 
 	// The values for the camera and projection matrices had to be changed from the original tutorial example (the values they supplied out of the box).
 	// I have no idea how the #$%#@*&$* they got anything to render with the ones they provided cause I'm bad at matrix math.
-	m_cameraMatrix = (glm::lookAt(glm::vec3(0, 0, 7), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0)));		// Also this was originally set to glm::inverse(glm::lookat(...)) , taking away the inverse
+	m_cameraMatrix = glm::inverse(glm::lookAt(glm::vec3(10, 10, 10), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0)));		// Also this was originally set to glm::inverse(glm::lookat(...)) , taking away the inverse
 																									// ...eventually allowed me to render something to the screen.
-	m_projectionMatrix = glm::perspective(45.0f, (float)width / (float)height, 0.1f, 100.0f);
+	m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f, width / (float)height, 0.1f, 1000.0f);
 
 	// Load in our shader program
 	m_ShaderProgram = LoadShaders("VertexShader.glsl", "FragmentShader.glsl");
@@ -35,7 +35,7 @@ bool Tutorial2::onCreate(int a_argc, char* a_argv[])
 	glClearColor(0.25f,0.25f, 0.25f,1);
 
 	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);																			//If you used their camera setup, the camera was actually facing the backs of shapes, so...
+	//glEnable(GL_CULL_FACE);																			//If you used their camera setup, the camera was actually facing the backs of shapes, so
 																									//... all 2D shapes were invisible cause their backs (or from our perspective, the "fronts") were 
 																									//... were being culled.
 
@@ -68,9 +68,11 @@ void Tutorial2::onDraw()
 	// uniforms for use in the shader
 	GLuint projectionViewUniform = glGetUniformLocation(m_ShaderProgram, "ProjectionView");	
 	GLuint timeUniform = glGetUniformLocation(m_ShaderProgram, "Time");
+
+	glm::mat4 viewMatrix = glm::inverse(m_cameraMatrix);
 	
 	glUniform1f(timeUniform, Utility::getTotalTime());
-	glUniformMatrix4fv(projectionViewUniform, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix * m_cameraMatrix));	// In the original example they forgot to multiply the Projection Matrix
+	glUniformMatrix4fv(projectionViewUniform, 1, GL_FALSE, glm::value_ptr(m_projectionMatrix * viewMatrix));	// In the original example they forgot to multiply the Projection Matrix
 																													// ... by the view matrix.
 	glBindVertexArray(m_VAO);											// Must be done once per frame in OpenGL 4.0 from what I've read.
 
@@ -117,7 +119,7 @@ void Tutorial2::GenerateGrid(unsigned int rows, unsigned int cols)
 	/* VERTEX ARRAY */
 
 	/* 
-				Documentation Links:
+			Documentation Links:
 		
 		http://docs.gl/gl4/glGenBuffers
 		http://docs.gl/gl4/glBindBuffer
@@ -143,13 +145,15 @@ void Tutorial2::GenerateGrid(unsigned int rows, unsigned int cols)
 	{
 		for (unsigned int c = 0; c < cols; ++c)
 		{
-			aoVertices[r * cols + c].position = glm::vec4((float)c , (float)r  , 0 , 1);
+			aoVertices[r * cols + c].position = glm::vec4((float)c, 0, (float)r, 1);				// I had to change this part as well, my camera knowledge is weak		
+																										// ... so I had it render to XY instead of XZ
 			glm::vec3 v3colour = glm::vec3(sinf((c / (float)(cols - 1)) *  (r / (float)(rows - 1))));	// Creating a glm::vec3(...) with ONE variable as the argument sets XYZ to that value.
 																										// Thus, this loop is going to initialize each vertices color to a grayscale value between solid
 																										// ...white and solid black, as XYZ will always be the same value between 0 and 1.
 			aoVertices[r * cols + c].colour = glm::vec4(v3colour, 1.0f);								// This transforms the vec3 into a vec4, since w(or alpha, in this case) is always 1, the color will always
 																										// ... be opaque.
 		}
+
 	}
 	//STEP 1: GENERATE BUFFER
 	glGenBuffers(1, &m_VBO);								// Param 1: no. of array object names - how many object names are to be generated
