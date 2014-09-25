@@ -35,8 +35,9 @@ protected:
 	void InitFBXSceneResource(FBXFile * a_pScene);
 	void UpdateFBXSceneResource(FBXFile * a_pScene);
 	void RenderFBXSceneResource(FBXFile * a_pScene, glm::mat4 a_view, glm::mat4 a_projection);
-	void DestroyFBXSceneResources(FBXFile * a_pScene);
+	void DestroyFBXSceneResource(FBXFile * a_pScene);
 
+	FBXFile * m_FBX;
 
 
 
